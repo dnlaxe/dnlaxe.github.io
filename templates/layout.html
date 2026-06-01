@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .Title }}</title>
+  </head>
+  <body>
+    <nav>
+      <strong>My Custom Blog</strong>
+    </nav>
+
+    <main>
+      <h1>{{ .Title }}</h1>
+      <p><em>Published on: {{ .Date }}</em></p>
+      <hr />
+
+      {{ .Content }}
+    </main>
+
+    <footer>
+      <p><small>Built from scratch with Go.</small></p>
+    </footer>
+  </body>
+</html>

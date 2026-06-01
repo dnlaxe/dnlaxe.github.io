@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Custom Blog - Home</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 0 20px;
+        line-height: 1.6;
+      }
+      nav {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+      }
+      .post-list {
+        list-style-type: none;
+        padding: 0;
+      }
+      .post-list li {
+        margin-bottom: 15px;
+      }
+      .post-list a {
+        text-decoration: none;
+        color: #0066cc;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .post-date {
+        color: #666;
+        font-size: 0.9rem;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <strong>My Custom Blog</strong>
+    </nav>
+
+    <main>
+      <h1>Latest Posts</h1>
+
+      <ul class="post-list">
+        {{ range . }}
+        <li>
+          <a href="{{ .Link }}">{{ .Title }}</a>
+          <span class="post-date">{{ .Date }}</span>
+        </li>
+        {{ end }}
+      </ul>
+    </main>
+  </body>
+</html>
