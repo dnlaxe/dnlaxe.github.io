@@ -24,8 +24,22 @@ jobs:
         with:
           go-version: "1.22"
 
+      # CRITICAL STEP 1: Ensures your Go code has all its dependencies
+      - name: Download Go modules
+        run: go mod download
+
       - name: Run my custom generator
         run: go run main.go
+
+      # CRITICAL STEP 2: Tells us exactly where the files went
+      - name: Verify output directory
+        run: |
+          if [ ! -d "public" ]; then
+            echo "Error: The 'public' directory is missing. Your main.go script did not create it!"
+            exit 1
+          fi
+          echo "Success: public/ exists. Here are its contents:"
+          ls -la public/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
