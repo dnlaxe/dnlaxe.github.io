@@ -24,14 +24,15 @@ jobs:
         with:
           go-version: "1.22"
 
-      # CRITICAL STEP 1: Ensures your Go code has all its dependencies
       - name: Download Go modules
         run: go mod download
+
+      - name: Create output folder
+        run: mkdir -p public
 
       - name: Run my custom generator
         run: go run main.go
 
-      # CRITICAL STEP 2: Tells us exactly where the files went
       - name: Verify output directory
         run: |
           if [ ! -d "public" ]; then
