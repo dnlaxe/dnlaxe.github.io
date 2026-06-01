@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"html/template"
 	"log"
@@ -30,6 +31,9 @@ type BlogPostData struct {
 }
 
 func main() {
+
+	serveFlag := flag.Bool("serve", false, "Start a local web server after building.")
+	flag.Parse()
 
 	os.RemoveAll("public")
 
@@ -100,9 +104,13 @@ func main() {
 
 	fmt.Println("Site fully generated.")
 
-	fmt.Println("Starting local server! Open your browser to http://localhost:8080")
-	fmt.Println("(Press CTRL+C in this terminal to stop the server)")
-	log.Fatal(http.ListenAndServe(":8000", http.FileServer(http.Dir("public"))))
+	if *serveFlag {
+		fmt.Println("Starting local server! Open your browser to http://localhost:8080")
+		fmt.Println("(Press CTRL+C in this terminal to stop the server)")
+		log.Fatal(http.ListenAndServe(":8080", http.FileServer(http.Dir("public"))))
+	} else {
+		fmt.Println("Build finished. Exiting process.")
+	}
 }
 
 func parseMarkdown(filePath string, filename string) PostData {
