@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ .Title }} | MY KINDLE-STYLE BLOG</title>
+    <title>Portfolio | MY KINDLE-STYLE BLOG</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Literata:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@400&display=swap");
 
+      /* Theme Variables */
       :root {
         --bg-color: #fdfdfd;
         --text-color: #1a1a1a;
         --sidebar-bg: #ffffff;
         --border-color: #e5e5e5;
         --code-bg: #f4f4f4;
+        --tag-text: inherit;
       }
 
       [data-theme="dark"] {
@@ -22,6 +24,7 @@
         --sidebar-bg: #1e1e1e;
         --border-color: #333333;
         --code-bg: #2a2a2a;
+        --tag-text: #1a1a1a;
       }
 
       body {
@@ -46,23 +49,14 @@
         font-weight: 700;
       }
 
-      .meta,
-      .tags {
+      .meta {
         font-family: "JetBrains Mono", monospace;
         color: #888;
         font-size: 0.875rem;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
       }
 
-      .tag {
-        background: var(--code-bg);
-        padding: 2px 8px;
-        border-radius: 4px;
-        margin-right: 8px;
-        font-family: "JetBrains Mono", monospace;
-      }
-
+      /* Sidebar Styles (Imported from Blog/Home) */
       #sidebar {
         height: 100%;
         width: 0;
@@ -104,6 +98,7 @@
         justify-content: space-between;
       }
 
+      /* Toggle Switch */
       .switch {
         position: relative;
         display: inline-block;
@@ -151,29 +146,6 @@
         font-size: 30px;
         cursor: pointer;
       }
-
-      /* Code Block Styling */
-      code {
-        font-family: "JetBrains Mono", monospace;
-        background: var(--code-bg);
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        font-size: 0.9em;
-      }
-
-      pre {
-        background: var(--code-bg);
-        padding: 1.5rem;
-        border-radius: 8px;
-        overflow-x: auto;
-        margin: 2rem 0;
-        border: 1px solid var(--border-color);
-      }
-
-      pre code {
-        background: transparent;
-        padding: 0;
-      }
     </style>
   </head>
   <body class="antialiased">
@@ -206,21 +178,25 @@
     </div>
 
     <article class="kindle-container">
-      <header class="border-b border-[var(--border-color)] pb-8 mb-8">
-        <h1 class="text-4xl md:text-5xl mb-4 leading-tight">{{ .Title }}</h1>
-
-        <div class="tags mb-4">
-          {{ range .Tags }}
-          <span class="tag">#{{ . }}</span>
-          {{ end }}
-        </div>
-
-        <div class="meta">
-          <span>{{ .Date }}</span>
-        </div>
+      <header class="mb-12 pb-8 border-b border-[var(--border-color)]">
+        <h1 class="text-5xl mb-4 leading-tight">My Projects</h1>
+        <p class="text-xl opacity-80">
+          A collection of my recent work and technical explanations.
+        </p>
       </header>
 
-      <main class="space-y-6 text-lg md:text-xl">{{ .Content }}</main>
+      <section id="post-list" class="space-y-12">
+        {{ range . }}
+
+        <div class="post-card group cursor-pointer">
+          <a href="{{ .Link }}" style="text-decoration: none; color: inherit">
+            <h2 class="text-3xl mb-1 group-hover:underline">{{ .Title }}</h2>
+            <div class="meta">{{ .Date }}</div>
+          </a>
+        </div>
+
+        {{ end }}
+      </section>
     </article>
 
     <script>

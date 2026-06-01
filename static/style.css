@@ -1,0 +1,36 @@
+body {
+  font-family: sans-serif;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+nav {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+footer {
+  margin-top: 50px;
+  border-top: 2px solid #eee;
+  padding-top: 10px;
+  color: #666;
+}
+.post-list {
+  list-style-type: none;
+  padding: 0;
+}
+.post-list li {
+  margin-bottom: 15px;
+}
+.post-list a {
+  text-decoration: none;
+  color: #0066cc;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.post-date {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}

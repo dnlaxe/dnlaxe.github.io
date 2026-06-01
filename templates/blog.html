@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ .Title }} | MY KINDLE-STYLE BLOG</title>
+    <title>MY KINDLE-STYLE BLOG</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Literata:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@400&display=swap");
@@ -14,6 +14,7 @@
         --sidebar-bg: #ffffff;
         --border-color: #e5e5e5;
         --code-bg: #f4f4f4;
+        --tag-text: inherit;
       }
 
       [data-theme="dark"] {
@@ -22,6 +23,7 @@
         --sidebar-bg: #1e1e1e;
         --border-color: #333333;
         --code-bg: #2a2a2a;
+        --tag-text: #1a1a1a;
       }
 
       body {
@@ -46,23 +48,31 @@
         font-weight: 700;
       }
 
-      .meta,
-      .tags {
+      .meta {
         font-family: "JetBrains Mono", monospace;
         color: #888;
         font-size: 0.875rem;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
       }
 
       .tag {
         background: var(--code-bg);
-        padding: 2px 8px;
+        color: var(--tag-text);
+        padding: 4px 12px;
         border-radius: 4px;
-        margin-right: 8px;
+        cursor: pointer;
+        display: inline-block;
+        margin: 4px;
         font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+        text-transform: uppercase;
       }
 
+      .tag.active {
+        background: #cbd5e1;
+      }
+
+      /* Sidebar Styles */
       #sidebar {
         height: 100%;
         width: 0;
@@ -104,6 +114,7 @@
         justify-content: space-between;
       }
 
+      /* Toggle Switch */
       .switch {
         position: relative;
         display: inline-block;
@@ -151,29 +162,6 @@
         font-size: 30px;
         cursor: pointer;
       }
-
-      /* Code Block Styling */
-      code {
-        font-family: "JetBrains Mono", monospace;
-        background: var(--code-bg);
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        font-size: 0.9em;
-      }
-
-      pre {
-        background: var(--code-bg);
-        padding: 1.5rem;
-        border-radius: 8px;
-        overflow-x: auto;
-        margin: 2rem 0;
-        border: 1px solid var(--border-color);
-      }
-
-      pre code {
-        background: transparent;
-        padding: 0;
-      }
     </style>
   </head>
   <body class="antialiased">
@@ -206,21 +194,40 @@
     </div>
 
     <article class="kindle-container">
-      <header class="border-b border-[var(--border-color)] pb-8 mb-8">
-        <h1 class="text-4xl md:text-5xl mb-4 leading-tight">{{ .Title }}</h1>
+      <div
+        class="mb-12 pb-8 border-b border-[var(--border-color)] flex flex-wrap gap-2"
+      >
+        <span
+          class="tag hover:bg-gray-300 active"
+          onclick="filterPosts('All', this)"
+          >ALL</span
+        >
 
-        <div class="tags mb-4">
-          {{ range .Tags }}
-          <span class="tag">#{{ . }}</span>
-          {{ end }}
+        {{ range .Tags }}
+        <span
+          class="tag hover:bg-gray-300"
+          onclick="filterPosts('{{ . }}', this)"
+          style="text-transform: uppercase"
+          >{{ . }}</span
+        >
+        {{ end }}
+      </div>
+
+      <section id="post-list" class="space-y-12">
+        {{ range .Posts }}
+
+        <div
+          class="post-card group cursor-pointer"
+          data-tags="{{ range .Tags }}{{ . }},{{ end }}"
+        >
+          <a href="{{ .Link }}" style="text-decoration: none; color: inherit">
+            <h2 class="text-3xl mb-1 group-hover:underline">{{ .Title }}</h2>
+            <div class="meta">{{ .Date }}</div>
+          </a>
         </div>
 
-        <div class="meta">
-          <span>{{ .Date }}</span>
-        </div>
-      </header>
-
-      <main class="space-y-6 text-lg md:text-xl">{{ .Content }}</main>
+        {{ end }}
+      </section>
     </article>
 
     <script>
@@ -236,6 +243,28 @@
         const isDark = body.getAttribute("data-theme") === "dark";
         body.setAttribute("data-theme", isDark ? "" : "dark");
         document.getElementById("theme-toggle-input").checked = !isDark;
+      }
+
+      function filterPosts(tag, clickedElement) {
+        const allTagButtons = document.querySelectorAll(".tag");
+        allTagButtons.forEach((button) => button.classList.remove("active"));
+
+        if (clickedElement) {
+          clickedElement.classList.add("active");
+        }
+
+        const searchTag = tag.toUpperCase();
+        const posts = document.querySelectorAll(".post-card");
+
+        posts.forEach((post) => {
+          const tags = post.getAttribute("data-tags").toUpperCase();
+
+          if (searchTag === "ALL" || tags.includes(searchTag)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
       }
     </script>
   </body>
