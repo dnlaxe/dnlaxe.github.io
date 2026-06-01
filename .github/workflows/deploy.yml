@@ -33,15 +33,6 @@ jobs:
       - name: Run my custom generator
         run: go run main.go
 
-      - name: Verify output directory
-        run: |
-          if [ ! -d "public" ]; then
-            echo "Error: The 'public' directory is missing. Your main.go script did not create it!"
-            exit 1
-          fi
-          echo "Success: public/ exists. Here are its contents:"
-          ls -la public/
-
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
