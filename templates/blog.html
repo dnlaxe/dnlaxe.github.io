@@ -30,7 +30,7 @@
         background-color: var(--bg-color);
         color: var(--text-color);
         font-family: "Literata", serif;
-        line-height: 1.8;
+        line-height: 1.8 !important;
         transition:
           background-color 0.3s,
           color 0.3s;
@@ -72,7 +72,6 @@
         background: #cbd5e1;
       }
 
-      /* Sidebar Styles */
       #sidebar {
         height: 100%;
         width: 0;
@@ -114,7 +113,6 @@
         justify-content: space-between;
       }
 
-      /* Toggle Switch */
       .switch {
         position: relative;
         display: inline-block;
@@ -174,6 +172,9 @@
     </div>
 
     <article class="kindle-container">
+      <header class="mb-6 pb-6 border-b border-[var(--border-color)]">
+        <h1 class="text-5xl mb-4 leading-tight">Blog</h1>
+      </header>
       <div
         class="mb-12 pb-8 border-b border-[var(--border-color)] flex flex-wrap gap-2"
       >

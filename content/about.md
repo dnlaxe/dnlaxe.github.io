@@ -1,8 +1,27 @@
 ---
 title: "About Me"
-date: "2026-06-01"
 type: "page"
 slug: "about"
 ---
 
-Hello! I am building my own custom static site generator from scratch using Go.
+I'm learning something new every day.
+
+## Stack
+
+Html Css Tailwind Javascript Typescript Node Express Go
+
+## Architecture
+
+John Ousterhout
+
+## Inspiration
+
+Koreda
+
+## Design
+
+Breaking the Grid, Swiss Design
+
+## Language
+
+Korean, TOPIK, TOPIK speaking
