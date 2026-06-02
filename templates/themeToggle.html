@@ -1,0 +1,37 @@
+{{ define "themeToggle" }}
+<script>
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("theme-toggle-input");
+    if (toggle && savedTheme === "dark") {
+      toggle.checked = true;
+    }
+  });
+
+  function openNav() {
+    document.getElementById("sidebar").style.width = "280px";
+  }
+  function closeNav() {
+    document.getElementById("sidebar").style.width = "0";
+  }
+
+  function toggleTheme() {
+    const root = document.documentElement;
+    const isDark = root.getAttribute("data-theme") === "dark";
+
+    if (isDark) {
+      root.removeAttribute("data-theme");
+      localStorage.setItem("theme", "light");
+    } else {
+      root.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    }
+
+    document.getElementById("theme-toggle-input").checked = !isDark;
+  }
+</script>
+{{ end }}

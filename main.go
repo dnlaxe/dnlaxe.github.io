@@ -37,10 +37,10 @@ func main() {
 
 	os.RemoveAll("public")
 
-	layoutTmpl := template.Must(template.ParseFiles("templates/layout.html"))
-	homeTmpl := template.Must(template.ParseFiles("templates/home.html"))
-	blogTmpl := template.Must(template.ParseFiles("templates/blog.html"))
-	portfolioTmpl := template.Must(template.ParseFiles("templates/portfolio.html"))
+	layoutTmpl := template.Must(template.ParseFiles("templates/layout.html", "templates/sidebar.html", "templates/themeToggle.html"))
+	homeTmpl := template.Must(template.ParseFiles("templates/home.html", "templates/sidebar.html", "templates/themeToggle.html"))
+	blogTmpl := template.Must(template.ParseFiles("templates/blog.html", "templates/sidebar.html", "templates/themeToggle.html"))
+	portfolioTmpl := template.Must(template.ParseFiles("templates/portfolio.html", "templates/sidebar.html", "templates/themeToggle.html"))
 
 	var posts []PostData
 	var projects []PostData

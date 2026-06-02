@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ .Title }} | MY KINDLE-STYLE BLOG</title>
+    <title>{{ .Title }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Literata:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@400&display=swap");
@@ -177,27 +177,7 @@
     </style>
   </head>
   <body class="antialiased">
-    <div id="sidebar">
-      <div class="close-btn" onclick="closeNav()">&times;</div>
-      <div class="menu-content">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/blog/" class="nav-link">Blog</a>
-        <a href="/about/" class="nav-link">About</a>
-        <a href="/portfolio/" class="nav-link">Portfolio</a>
-        <a href="/contact/" class="nav-link">Contact</a>
-      </div>
-      <div class="theme-toggle-area">
-        <span class="text-sm font-bold tracking-widest">Dark Mode</span>
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="theme-toggle-input"
-            onchange="toggleTheme()"
-          />
-          <span class="slider"></span>
-        </label>
-      </div>
-    </div>
+    {{ template "sidebar" . }}
 
     <div class="p-6">
       <button onclick="openNav()" class="text-2xl font-bold font-sans">
@@ -223,20 +203,6 @@
       <main class="space-y-6 text-lg md:text-xl">{{ .Content }}</main>
     </article>
 
-    <script>
-      function openNav() {
-        document.getElementById("sidebar").style.width = "280px";
-      }
-      function closeNav() {
-        document.getElementById("sidebar").style.width = "0";
-      }
-
-      function toggleTheme() {
-        const body = document.documentElement;
-        const isDark = body.getAttribute("data-theme") === "dark";
-        body.setAttribute("data-theme", isDark ? "" : "dark");
-        document.getElementById("theme-toggle-input").checked = !isDark;
-      }
-    </script>
+    {{ template "themeToggle" . }}
   </body>
 </html>
