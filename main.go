@@ -78,9 +78,11 @@ func main() {
 	fmt.Println("Building blog...")
 
 	uniqueTagsMap := make(map[string]bool)
-	for _, post := range posts {
-		for _, tag := range post.Tags {
-			uniqueTagsMap[tag] = true
+	for i := range posts {
+		for j, tag := range posts[i].Tags {
+			cleanedTag := strings.ToUpper(strings.TrimSpace(tag))
+			posts[i].Tags[j] = cleanedTag
+			uniqueTagsMap[cleanedTag] = true
 		}
 	}
 

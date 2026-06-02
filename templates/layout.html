@@ -40,10 +40,15 @@
         padding: 4rem 2rem;
       }
 
-      h1,
+      h1 {
+        font-family: "Caveat", cursive;
+        font-weight: 700;
+      }
+
       h2 {
         font-family: "Caveat", cursive;
         font-weight: 700;
+        font-size: 1.4em !important;
       }
 
       .meta,
@@ -53,6 +58,9 @@
         font-size: 0.875rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 8px;
       }
 
       .tag {
@@ -61,6 +69,7 @@
         border-radius: 4px;
         margin-right: 8px;
         font-family: "JetBrains Mono", monospace;
+        white-space: nowrap;
       }
 
       #sidebar {
@@ -152,13 +161,12 @@
         cursor: pointer;
       }
 
-      /* Code Block Styling */
       code {
         font-family: "JetBrains Mono", monospace;
         background: var(--code-bg);
         padding: 0.2rem 0.4rem;
         border-radius: 4px;
-        font-size: 0.9em;
+        font-size: 0.8em !important;
       }
 
       pre {
