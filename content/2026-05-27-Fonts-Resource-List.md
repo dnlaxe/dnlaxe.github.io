@@ -1,9 +1,9 @@
 ---
-title: "Typography: Ongoing Resourse List"
+title: "Typography: Ongoing Resource List"
 date: 2026-05-27
 type: "post"
 slug: "typography-resource-gems"
-tags: ["Typography", "Web Design"]
+tags: ["Typography"]
 ---
 
 ## Definitions
@@ -17,6 +17,7 @@ tags: ["Typography", "Web Design"]
 ## Links
 
 https://fontsinuse.com/
+
 https://www.typewolf.com/
 
 ## Material Design 2 Typography Guide

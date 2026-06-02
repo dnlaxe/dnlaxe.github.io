@@ -1,9 +1,9 @@
 ---
-title: "Learning Korean: Ongoing Resourse List"
+title: "Learning Korean: Ongoing Resource List"
 date: 2026-05-27
 type: "post"
 slug: "learning-korean-resource-gems"
-tags: ["Korean", "Topik", "Topik Speaking"]
+tags: ["Korean", "Topik"]
 ---
 
 ## Translated News

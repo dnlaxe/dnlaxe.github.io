@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/yuin/goldmark"
@@ -71,6 +72,14 @@ func main() {
 		generateHTML(layoutTmpl, post, folderName, "index.html")
 
 	}
+
+	sort.Slice(posts, func(i, j int) bool {
+		return posts[i].Date > posts[j].Date
+	})
+
+	sort.Slice(projects, func(i, j int) bool {
+		return projects[i].Date > projects[j].Date
+	})
 
 	fmt.Println("Building homepage...")
 	generateHTML(homeTmpl, nil, "", "index.html")

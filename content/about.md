@@ -4,24 +4,20 @@ type: "page"
 slug: "about"
 ---
 
-I'm learning something new every day.
+# Stack
 
-## Stack
+HTML, CSS, Tailwind, Javascript, Typescript, Node, Express, Go
 
-Html Css Tailwind Javascript Typescript Node Express Go
-
-## Architecture
+# Architecture
 
 John Ousterhout
 
-## Inspiration
+# Inspiration
 
-Koreda
-
-## Design
+# Design
 
 Breaking the Grid, Swiss Design
 
-## Language
+# Language
 
 Korean, TOPIK, TOPIK speaking
