@@ -8,4 +8,4 @@ tags: ["Korean", "Topik"]
 
 ## Translated News
 
-https://koreajoongangdaily.joins.com/section/bilingualNews
+[_Jungang Daily News with Translations_](https://koreajoongangdaily.joins.com/section/bilingualNews)

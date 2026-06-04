@@ -16,10 +16,10 @@ tags: ["Typography"]
 
 ## Links
 
-https://fontsinuse.com/
+_https://fontsinuse.com_
 
-https://www.typewolf.com/
+_https://www.typewolf.com_
 
 ## Material Design 2 Typography Guide
 
-https://m2.material.io/design/typography/the-type-system.html#type-scale
+_https://m2.material.io/design/typography/the-type-system.html#type-scale_

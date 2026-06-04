@@ -4,17 +4,19 @@ type: "page"
 slug: "about"
 ---
 
-# Stack
+I'm a Mathematics graduate from the UK living in Korea with strong experience in web development and programming.
 
-HTML, CSS, Tailwind, Javascript, Typescript, Node, Express, Go
+# Frontend Stack
+
+HTML, CSS, Tailwind, Javascript, Typescript, React
+
+# Backend Stack
+
+Node, Express, Go
 
 # Architecture
 
 John Ousterhout
-
-# Design
-
-Breaking the Grid, Swiss Design
 
 # Language
 

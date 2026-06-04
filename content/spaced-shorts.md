@@ -6,6 +6,4 @@ slug: "project-spaced-shorts"
 tags: ["react", "language learning"]
 ---
 
-# Spaced Shorts
-
-LINK: [spaced-shorts.vercel.app](https://spaced-shorts.vercel.app/)
+[_spaced-shorts.vercel.app_](https://spaced-shorts.vercel.app/)
