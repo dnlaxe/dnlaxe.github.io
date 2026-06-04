@@ -8,4 +8,6 @@ tags: ["node", "express", "handlebars"]
 
 # Job Board
 
+LINK: [korea-jobs-board.vercel.app](https://korea-jobs-board.vercel.app/)
+
 explanation to come..

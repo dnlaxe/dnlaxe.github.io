@@ -8,4 +8,4 @@ tags: ["react", "language learning"]
 
 # Spaced Shorts
 
-[spaced-shorts.vercel.app](https://spaced-shorts.vercel.app/)
+LINK: [spaced-shorts.vercel.app](https://spaced-shorts.vercel.app/)

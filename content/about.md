@@ -12,8 +12,6 @@ HTML, CSS, Tailwind, Javascript, Typescript, Node, Express, Go
 
 John Ousterhout
 
-# Inspiration
-
 # Design
 
 Breaking the Grid, Swiss Design
