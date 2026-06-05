@@ -6,14 +6,14 @@ slug: "about"
 
 I'm a Mathematics graduate from the UK living in Korea with strong experience in web development and programming.
 
-# Frontend Stack
+## Frontend Stack
 
 HTML, CSS, Tailwind, Javascript, Typescript, React
 
-# Backend Stack
+## Backend Stack
 
 Node, Express, Go
 
-# Language
+## Language
 
 Native English, Korean Topik 4

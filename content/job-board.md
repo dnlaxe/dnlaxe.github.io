@@ -6,21 +6,21 @@ slug: "project-job-board"
 tags: ["node", "express", "handlebars"]
 ---
 
-# Live Demo
+## Live Demo
 
 [_korea-jobs-board.vercel.app_](https://korea-jobs-board.vercel.app/jobs/board)
 
-# Intention
+## Intention
 
 I wanted to create a simple job board. The main goal was for it to be frictionless and easy to post and manage posts. In order to achieve this, users do not have to create an account. With an email alone, they are able to submit posts. The email is only needed so that the user can recieve an email in which there is a link through which they can manage their post. I also decided to use a multistep form as a quick way to construct posts.
 
-# Stack
+## Stack
 
 I chose to use Node/Express with Typescript for the backend. I wanted the page to server side rendered to help with SEO.
 
 The muiltstep form was made with vanilla javascript.
 
-# Key dependencies
+## Key dependencies
 
 - Tailwind for styling.
 - Drizzle and Postgres for database.
@@ -31,7 +31,7 @@ The muiltstep form was made with vanilla javascript.
 - Resend for email.
 - Concurrently to run server scripts together.
 
-# Architecture
+## Architecture
 
 Routes → http only, middleware and delegates to controller.
 
@@ -43,7 +43,7 @@ Repos → only db queries
 
 I decided to group them together by feature (jobs, admin etc). Apart from for the repos which has its own folder.
 
-# Error Handling
+## Error Handling
 
 I decided to try and implement an error handling system using discriminated unions.
 
@@ -61,7 +61,7 @@ Instead of throwing errors, errors are caught and consumed within the function. 
 
 I use `errorHandler`, `notFoundHandler` and `globalErrorHandler` middleware to catch any unforeseen errors.
 
-# loadError, actionError and fieldError
+## loadError, actionError and fieldError
 
 User facing error messages appear in three forms.
 
@@ -71,7 +71,7 @@ User facing error messages appear in three forms.
 
 `fieldErrors`: form validation failed. Passed directly to res.render on the same page, e.g. invalid email, missing heading.
 
-# Pino logging
+## Pino logging
 
 Pino is used for logging. `console.error` can be called once at start up before Pino has been loaded.
 
@@ -81,7 +81,7 @@ Pino-pretty creates readable logs in development but this is disabled in product
 
 `req.log` is used to attach logs to requests. `appLogger` is used to create logs in the background outside the HTTP request context.
 
-# Multistep form
+## Multistep form
 
 The form is handled by `form.js`. Whenever the user interacts with the form, a state object is updated. This is the source of frontend truth.
 
@@ -112,29 +112,29 @@ If the server returns an error after attmepted submission, the page will be relo
 
 Creating this form was interesting however I would like to remake it again in a simpler, easier to read way.
 
-# Audit logging
+## Audit logging
 
 I wanted a simple way of keeping a record of certain events. In an audit event table in the database, I am able to track these events with details. These events are then shown in the admin dashboard.
 
 It is particularly useful when with the `expireOverduePosts` function. When the job board is loaded, there is a quick check to see if any job posts have expired. If they are, they are marked as expired in the database so that they no longer appear. By recording this in audit events, admin is able to know that this has happened and when.
 
-# Admin approval
+## Admin approval
 
 All posts are subject to admin approval before they are published.
 
-# Magic link system
+## Magic link system
 
 When the post is approved, poster is sent an email with a link through which they can manage their post. The link includes a random generated string in the url. This string will be very difficult to guess, and even if someone did, there is no benefit from doing so. This passwordless method removes the need for logging in. I used the library 'random-words' to make the string more readable.
 
-# View tracking
+## View tracking
 
 A view count every time a job is viewed happens as an example of collecting statistics.
 
-# Mock payment and mock email
+## Mock payment and mock email
 
 I set up a mock payment and mock email flow that can be toggled. Resend is responsible for the real emails.
 
-# Database and cache
+## Database and cache
 
 I use a Postgres database with Drizzle.
 
@@ -149,7 +149,7 @@ interface LivePostsCache {
 }
 ```
 
-# Environment variable validation
+## Environment variable validation
 
 Zod validates `process.env` on startup and the application will not start if the environment isn't configured correctly. This reduces the chance of environment variables being the cause of a bug.
 
@@ -163,19 +163,19 @@ export const isProduction = config.node_env === "production";
 export const isBasicAuthEnabled = config.basic_auth === true;
 ```
 
-# Templating
+## Templating
 
 Handlebars are used for templating. Repeated components are extracted into partials. Helpers, e.g. `json: (obj) => JSON.stringify(obj)` are added to add more functionality in html.
 
-# Health checks
+## Health checks
 
 `showReadiness` checks the database is still connected. `showLiveness` shows process is alive.
 
-# Startup
+## Startup
 
 The server doesn't start unless the database is connected and the enviroment variables are valid.
 
-# Graceful shutdown
+## Graceful shutdown
 
 `shutdownHandler` attempts to shut the app down in orderly way if an unexpected error occurs. By using an isShuttingDown flag, the readiness probe will start returning `503 Service Unavailable` which will tell the load balancer to stop sending new requests.
 
@@ -183,15 +183,15 @@ The server doesn't start unless the database is connected and the enviroment var
 
 Adding a `SHUTDOWN_TIMEOUT_MS` timer ensures the shutdown doesn't hang ane will terminate hanging processes.
 
-# Zod
+## Zod
 
 Zod validates any data coming into the backend from the client.
 
-# Session
+## Session
 
 I wanted users to be able to add multiple posts and have them persist between refreshes similar to a shopping cart on commerce website. After receiving and validating the user's email (`/start`), a session is created and the user can start creating (`/form`) and saving posts. The form cannot be accessed until an email has been submitted in '/start'.
 
-# Deletion confirmation modals
+## Deletion confirmation modals
 
 This is a common button so I created a resuable pattern. `modal.js` can be reused for other types of confirmation. In this case it is able to deal with all delete buttons throughout the page. `delete-data-trigger` is placed in any button that will need to trigger a deletion modal. By using `trigger.closest("form")` we know where the modal is being requested. This is then saved in `activeForm` for future reference.
 
@@ -209,17 +209,17 @@ Each modal is a partial and can be customised:
 
 Javascript is then used to deal with further user interactions.
 
-# Types and express.d.ts
+## Types and express.d.ts
 
 The database schema and Typescript types operate in different parts of the project, and any drift between them can cause bugs. SO I generate types by using Drizzle's $inferSelect and $inferInsert from the database schema to ensures there is one source of truth.
 
 Typescript is aware of what can be attached to a request as it looks inside the express library. However it is doesn't know about extra properties that will be added to the request at run time such as a session ID number. So this needs to defined in `express.d.ts` file which allows these types to be read globally. While properties for this types do not yet exist, Typescript is now prepared for when they appear at runtime.
 
-# Vercel hosting, postgres, vercel.json
+## Vercel hosting, postgres, vercel.json
 
 A live demo is hosted on Vercel. I used Vercel's connection to Neon for the Postgres database. Vercel provides a serverless environment so in order for an Express application to work, a `vercel.json` is needed to guide incoming requests. It also shows where static files can be found and ensures that the views folder is bundled in.
 
-# Summary
+## Summary
 
 If I were to make something like this again I would like to:
 
