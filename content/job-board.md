@@ -1,6 +1,6 @@
 ---
 title: "Job Board"
-date: "2026-06-01"
+date: "LAST UPDATED: 2026-06-05"
 type: "project"
 slug: "project-job-board"
 tags: ["node", "express", "handlebars"]
@@ -50,6 +50,8 @@ Instead of throwing errors, errors are caught and consumed within the function. 
 
 I use `errorHandler`, `notFoundHandler` and `globalErrorHandler` middleware to catch any unforeseen errors.
 
+# actionError and serverError
+
 # Architecture
 
 Routes → http only, middleware and delegates to controller.
@@ -61,8 +63,6 @@ Services → no http, only business logic, returns result objects
 Repos → only db queries
 
 I decided to group them together by feature (jobs, admin etc). Apart from for the repos which has its own folder.
-
-# Magic link system
 
 # Multistep form
 
@@ -100,6 +100,14 @@ Creating this form was interesting however I would like to remake it again in a 
 I wanted a simple way of keeping a record of certain events. In an audit event table in the database, I am able to track these events with details. These events are then shown in the admin dashboard.
 
 It is particularly useful when with the `expireOverduePosts` function. When the job board is loaded, there is a quick check to see if any job posts have expired. If they are, they are marked as expired in the database so that they no longer appear. By recording this in audit events, admin is able to know that this has happened and when.
+
+# Admin approval
+
+ALl posts are subject to admin approval before they are published.
+
+# Magic link system
+
+When the post is approved, poster is sent an email with a link through which they can manage their post. The link includes a random generated string in the url. This string will be very difficult to guess, and even if someone did, there is no benefit from doing so. This passwordless method removes the need for logging in.
 
 # View tracking
 
@@ -140,10 +148,6 @@ export const isProduction = config.node_env === "production";
 export const isBasicAuthEnabled = config.basic_auth === true;
 ```
 
-# Middleware
-
-# Basic Auth
-
 # Templating
 
 Handlebars are used for templating. Repeated components are extracted into partials. Helpers, e.g. `json: (obj) => JSON.stringify(obj)` are added to add more functionality in html.
@@ -172,7 +176,33 @@ Zod validates any data coming into the backend from the client.
 
 I wanted users to be able to add multiple posts and have them persist between refreshes similar to a shopping cart on commerce website. After receiving and validating the user's email (`/start`), a session is created and the user can start creating (`/form`) and saving posts. The form cannot be accessed until an email has been submitted in '/start'.
 
+# Deletion confirmation modals
+
+This is a common button so I created a resuable pattern. `modal.js` can be reused for other types of confirmation. In this case it is able to deal with all delete buttons throughout the page. `delete-data-trigger` is placed in any button that will need to trigger a deletion modal. By using `trigger.closest("form")` we know where the modal is being requested. This is then saved in `activeForm` for future reference.
+
+Each modal is a partial and can be customised:
+
+```
+{{> confirm-modal
+  id="delete-draft"
+  title="Delete draft?"
+  message="This draft will be permanently removed."
+  confirmLabel="Delete"
+  cancelLabel="Cancel"
+}}
+```
+
+Javascript is then used to deal with further user interactions.
+
+# Types and express.d.ts
+
+The database schema and Typescript types operate in different parts of the project, and any drift between them can cause bugs. SO I generate types by using Drizzle's $inferSelect and $inferInsert from the database schema to ensures there is one source of truth.
+
+Typescript is aware of what can be attached to a request as it looks inside the express library. However it is doesn't know about extra properties that will be added to the request at run time such as a session ID number. So this needs to defined in `express.d.ts` file which allows these types to be read globally. While properties for this types do not yet exist, Typescript is now prepared for when they appear at runtime.
+
 # Vercel hosting, postgres, vercel.json
+
+A live demo is hosted on Vercel. I used Vercel's connection to Neon for the Postgres database. Vercel provides a serverless environment so in order for an Express application to work, a `vercel.json` is needed to guide incoming requests. It also shows where static files can be found and ensures that the views folder is bundled in.
 
 # Summary
 
