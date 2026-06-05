@@ -6,6 +6,8 @@ slug: "project-job-board"
 tags: ["node", "express", "handlebars"]
 ---
 
+# Live Demo
+
 [_korea-jobs-board.vercel.app_](https://korea-jobs-board.vercel.app/jobs/board)
 
 # Intention
@@ -27,10 +29,19 @@ The muiltstep form was made with vanilla javascript.
 - Pino for logging.
 - Compression, cookie-parser, rate-limiter-flexible, helmet as recommended by Express docs.
 - Resend for email.
+- Concurrently to run server scripts together.
 
-# Flags
+# Architecture
 
-I added flags in development so that mock payment and mock email can be toggled.
+Routes → http only, middleware and delegates to controller.
+
+Controllers → http only, reads req, calls services, then writes res.
+
+Services → no http, only business logic, returns result objects7
+
+Repos → only db queries
+
+I decided to group them together by feature (jobs, admin etc). Apart from for the repos which has its own folder.
 
 # Error Handling
 
@@ -50,19 +61,25 @@ Instead of throwing errors, errors are caught and consumed within the function. 
 
 I use `errorHandler`, `notFoundHandler` and `globalErrorHandler` middleware to catch any unforeseen errors.
 
-# actionError and serverError
+# loadError, actionError and fieldError
 
-# Architecture
+User facing error messages appear in three forms.
 
-Routes → http only, middleware and delegates to controller.
+`loadError`: page renders but data couldn't be fetched. Passed directly to res.render, e.g. drafts fail to load, board posts fail to load.
 
-Controllers → http only, reads req, calls services, then writes res.
+`actionError`: user submitted something and it failed. Passed back via redirect query param then forwarded to the view, e.g. delete failed, update failed, checkout failed.
 
-Services → no http, only business logic, returns result objects
+`fieldErrors`: form validation failed. Passed directly to res.render on the same page, e.g. invalid email, missing heading.
 
-Repos → only db queries
+# Pino logging
 
-I decided to group them together by feature (jobs, admin etc). Apart from for the repos which has its own folder.
+Pino is used for logging. `console.error` can be called once at start up before Pino has been loaded.
+
+Every request gets a unique ID attached to it for traceability.
+
+Pino-pretty creates readable logs in development but this is disabled in production.
+
+`req.log` is used to attach logs to requests. `appLogger` is used to create logs in the background outside the HTTP request context.
 
 # Multistep form
 
@@ -103,11 +120,11 @@ It is particularly useful when with the `expireOverduePosts` function. When the 
 
 # Admin approval
 
-ALl posts are subject to admin approval before they are published.
+All posts are subject to admin approval before they are published.
 
 # Magic link system
 
-When the post is approved, poster is sent an email with a link through which they can manage their post. The link includes a random generated string in the url. This string will be very difficult to guess, and even if someone did, there is no benefit from doing so. This passwordless method removes the need for logging in.
+When the post is approved, poster is sent an email with a link through which they can manage their post. The link includes a random generated string in the url. This string will be very difficult to guess, and even if someone did, there is no benefit from doing so. This passwordless method removes the need for logging in. I used the library 'random-words' to make the string more readable.
 
 # View tracking
 
@@ -119,7 +136,7 @@ I set up a mock payment and mock email flow that can be toggled. Resend is respo
 
 # Database and cache
 
-I use a Postgres database with drizzle.
+I use a Postgres database with Drizzle.
 
 I set up a cache to reduce the number of times the database is called. A simple check `if (Date.now() > activePostsCache.expiresAt)` decides whether to serve the cache or empty and call the database for the latest data.
 
@@ -137,8 +154,6 @@ interface LivePostsCache {
 Zod validates `process.env` on startup and the application will not start if the environment isn't configured correctly. This reduces the chance of environment variables being the cause of a bug.
 
 These variables are then extracted into a config object to passed around the project.
-
-# Config flags
 
 This config object can then be used to create useful flags.
 
@@ -210,6 +225,6 @@ If I were to make something like this again I would like to:
 
 - Use dependency injection
 - Use deep modules for the architecture
-- Use less dependencies
+- Use less npm dependencies
 - Create a simple design system beforehand that could then easily updated later
 - More structured frontend

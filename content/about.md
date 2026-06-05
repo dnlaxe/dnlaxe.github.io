@@ -14,10 +14,6 @@ HTML, CSS, Tailwind, Javascript, Typescript, React
 
 Node, Express, Go
 
-# Architecture
-
-John Ousterhout
-
 # Language
 
-Korean, TOPIK, TOPIK speaking
+Native English, Korean Topik 4
