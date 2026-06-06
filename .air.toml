@@ -2,8 +2,8 @@
   cmd = "go build -o ./tmp/main . && ./tmp/main -serve"
   bin = "tmp/main"
   
-  include_ext = ["go", "md", "html"]
-  include_dir = ["content", "templates"]
+  include_ext = ["go", "md", "html", "css"]
+  include_dir = ["content", "templates", "static"]
   
   exclude_dir = ["public", "tmp"]
   delay = 1000

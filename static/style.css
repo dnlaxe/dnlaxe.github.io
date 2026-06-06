@@ -22,10 +22,14 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Literata", serif;
-  line-height: 1.8 !important;
+  line-height: 1.6 !important;
   transition:
     background-color 0.3s,
     color 0.3s;
+}
+
+p {
+  line-height: 1.6;
 }
 
 .kindle-container {
@@ -175,6 +179,7 @@ pre {
   overflow-x: auto;
   margin: 2rem 0;
   border: 1px solid var(--border-color);
+  line-height: 1.4;
 }
 
 pre code {
