@@ -3,7 +3,7 @@ title: "The Best Time to Learn"
 date: 2026-05-25
 type: "post"
 slug: "best-time-to-learn"
-tags: ["Learning"]
+tags: ["Misc"]
 ---
 
 ## How AI can help you develop
