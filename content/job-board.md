@@ -219,7 +219,7 @@ Typescript is aware of what can be attached to a request as it looks inside the 
 
 A live demo is hosted on Vercel. I used Vercel's connection to Neon for the Postgres database. Vercel provides a serverless environment so in order for an Express application to work, a `vercel.json` is needed to guide incoming requests. It also shows where static files can be found and ensures that the views folder is bundled in.
 
-## Summary
+## Future
 
 If I were to make something like this again I would like to:
 
