@@ -6,6 +6,8 @@ slug: "project-spaced-shorts"
 tags: ["react", "language learning"]
 ---
 
+## Live Demo
+
 [_spaced-shorts.vercel.app_](https://spaced-shorts.vercel.app/)
 
 ## Intention

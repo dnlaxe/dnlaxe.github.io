@@ -1,5 +1,7 @@
 # My Custom Static Site Generator
 
+https://dnlaxe.github.io/
+
 A static site generator (SSG) made with Go. It converts Markdown files into a HTML/CSS website. Inspired by Hugo and Kindle.
 
 ## Features
