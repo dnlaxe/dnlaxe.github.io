@@ -78,8 +78,11 @@ Relearning changes back to review for any user response other than `again`.
 `stepIndex` each short can have a stepIndex of 0-2. This number is changed by user's response. This is used to change state.
 
 - `Again` stepIndex = 0
+
 - `Hard` no change
+
 - `Medium` stepIndex += 1
+
 - `Easy` stepIndex += 2
 
 _stepIndex is only used for learning/relearning shorts_
@@ -93,9 +96,13 @@ _reps and lapses are currently unused._
 # Learning Phase
 
 Every new short starts with step: 0 and state: learning. This changes depending on user's feedback:
+
 `Again` step = 0, lapses++
+
 `Hard` no change
+
 `Medium` step increments by 1
+
 `Easy` step increments by 2
 
 When `step >= 2`, the short graduates to the `review` state.
@@ -105,8 +112,11 @@ When `step >= 2`, the short graduates to the `review` state.
 shorts that complete learning enter the `review` state. User feedback changes the review interval:
 
 `Again` state = relearning, step = 0, lapses++, interval = 0
+
 `Hard` interval × 1.2
+
 `Medium` interval × ease
+
 `Easy` interval × (ease + 0.15)
 
 After a successful review (`Hard`, `Medium`, or `Easy`), the short's due date is updated based on the new interval.
