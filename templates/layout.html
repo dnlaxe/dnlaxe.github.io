@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .Title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"
+    />
+  </head>
+  <body class="antialiased pb-8">
+    {{ template "navbar" . }}
+
+    <article class="kindle-container">
+      <header>
+        <h2 class="text-4xl mb-4 leading-[1.4]">
+          {{ .Title }}
+          <span class="inline-flex items-center gap-1 align-middle">
+            {{ if .GitHubUrl }}
+            <a
+              href="{{ .GitHubUrl}}"
+              target="_blank"
+              class="text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+            >
+              <i class="ph ph-github-logo"></i>
+            </a>
+
+            {{ end }} {{ if .AdventOfCodeUrl }}
+            <a
+              href="{{ .AdventOfCodeUrl }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+            >
+              <i class="ph ph-asterisk-simple"></i>
+            </a>
+
+            {{ end }} {{ if .LiveDemo}}
+            <a
+              href="{{ .LiveDemo }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+            >
+              <i class="ph ph-binoculars"></i>
+            </a>
+
+            {{ end }}
+          </span>
+        </h2>
+
+        <div class="tags mb-4 flex gap-2 flex-wrap">
+          {{ range .Tags }}
+          <span class="tag">#{{ . }}</span>
+          {{ end }}
+        </div>
+
+        <div class="meta">
+          <span>{{ .Date }}</span>
+        </div>
+      </header>
+
+      <hr class="border-t border-[var(--border-color)] mt-4 mb-8" />
+
+      <main class="space-y-6 text-lg break-words">{{ .Content }}</main>
+    </article>
+
+    {{ template "themeToggle" . }}
+  </body>
+</html>

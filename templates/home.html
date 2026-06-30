@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="antialiased">
+    {{ template "navbar" . }}
+
+    <main class="kindle-container">
+          <div class="section-heading mb-4">
+            <i class="ph ph-hand-waving text-4xl"></i>
+            <h2 class="text-4xl">Hello</h2>
+          </div>
+      <hr class="border-t border-[var(--border-color)]" />
+      <div>
+        <p class="text-lg leading-[1.6] my-4">
+          I’m a programmer who came to coding through mathematics, teaching, and a long habit of taking problems apart to understand how they work.
+        </p>
+
+        <p class="text-lg leading-[1.6]">
+        I enjoy breaking messy problems into smaller pieces, finding structure, and turning ideas into something that works.
+        </p>
+
+      <div class="tech-stack space-y-2 my-8">
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-tag">JAVASCRIPT</span>
+          <span class="tech-tag">TYPESCRIPT</span>
+          <span class="tech-tag">GO</span>
+          <span class="tech-tag">PYTHON</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="tech-tag">REACT</span>
+          <span class="tech-tag">NODE</span>
+          <span class="tech-tag">EXPRESS</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="tech-tag">CSS</span>
+          <span class="tech-tag">TAILWIND</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">POSTGRES</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="tech-tag">DOCKER</span>
+          <span class="tech-tag">GIT</span>
+        </div>
+      </div>
+
+      <section class="home-section">
+        <div>
+          <div class="section-heading mb-4">
+            <i class="ph ph-user text-4xl"></i>
+            <h2 class="text-4xl">About Me</h2>
+          </div>
+
+          <hr class="border-t border-[var(--border-color)]" />
+
+          <p class="text-lg leading-[1.6] my-4">
+            Before focusing on programming, I worked in education, where I learned how to explain complex ideas clearly, work across cultures, and solve problems with people as well as systems.
+          </p>
+
+        <div class="detail-list">
+          <div class="detail-item">
+            <i class="ph ph-binary text-2xl mx-4"></i>
+            <span class="font-mono tracking-tight mr-4"
+              >Programming and web development</span
+            >
+          </div>
+
+          <div class="detail-item">
+            <i class="ph ph-graduation-cap text-2xl mx-4"></i>
+            <span class="font-mono tracking-tight mr-4"
+              >Mathematics background</span
+            >
+          </div>
+
+          <div class="detail-item">
+            <i class="ph ph-map-pin text-2xl mx-4"></i>
+            <span class="font-mono tracking-tight mr-4">Based in Korea</span>
+          </div>
+        </div>
+      </div>
+        </div>
+      </section>
+
+      <section class="home-section">
+        <div>
+          <div class="section-heading mb-4">
+            <i class="ph ph-hammer text-4xl"></i>
+            <h2 class="text-4xl">Projects</h2>
+          </div>
+
+          <hr class="border-t border-[var(--border-color)]" />
+
+          <p class="text-lg leading-[1.6] my-4">
+            My projects use a range of languages, frameworks, and tools depending on what the problem needs: frontend interfaces, backend systems, database design, algorithms, or deployment.
+          </p>
+
+          
+          <div class="detail-item">
+            <i class="ph ph-folder-open text-2xl mx-4"></i>
+            <a
+              href="/portfolio"
+              class="font-mono tracking-tight mr-4"
+            >
+              Projects
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <footer class="my-8">
+        <div>
+          <div class="section-heading mb-4">
+            <i class="ph ph-paper-plane-tilt text-4xl"></i>
+            <h2 class="text-4xl">Contact</h2>
+          </div>
+
+          <hr class="border-t my-4 border-[var(--border-color)]" />
+
+
+          <div class="flex gap-4 mt-5 items-center">
+            <div class="detail-list">
+              <div class="detail-item">
+                <i class="ph ph-github-logo text-2xl mx-4"></i>
+                <a
+                  href="https://github.com/dnlaxe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-mono tracking-tight mr-4"
+                >
+                  Code
+                </a>
+              </div>
+
+          <div class="detail-item detail-item--last">
+                <i class="ph ph-envelope-simple text-2xl mx-4"></i>
+                <a
+                  href="mailto:dnlaxe@gmail.com"
+                  class="font-mono tracking-tight mr-4"
+                >
+                  Email
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    {{ template "themeToggle" . }}
+  </body>
+</html>

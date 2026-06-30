@@ -1,0 +1,66 @@
+{{ define "navbar" }}
+<header class="navbar mb-4">
+  <div class="navbar-inner">
+    <nav class="navbar-links" aria-label="Main navigation">
+      <a class="nav-link" href="/">About</a>
+      <a class="nav-link" href="/portfolio/">Projects</a>
+      <a class="nav-link" href="/blog/">Blog</a>
+    </nav>
+
+    <div class="navbar-actions">
+      <button
+        type="button"
+        class="theme-toggle-btn navbar-theme"
+        onclick="toggleTheme()"
+        aria-label="Switch to dark mode"
+      >
+        <i class="ph ph-moon theme-icon theme-icon--moon text-2xl"></i>
+        <i class="ph ph-sun theme-icon theme-icon--sun text-2xl"></i>
+      </button>
+
+      <button
+        type="button"
+        class="navbar-hamburger"
+        onclick="openNav()"
+        aria-label="Open menu"
+      >
+        <i class="ph ph-list text-2xl"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="nav-modal" class="nav-modal" aria-hidden="true">
+  <div class="nav-modal-header">
+    <button
+      type="button"
+      class="nav-modal-close"
+      onclick="closeNav()"
+      aria-label="Close menu"
+    >
+      <i class="ph ph-x text-2xl"></i>
+    </button>
+  </div>
+
+  <nav class="nav-modal-links kindle-container">
+    <a class="nav-modal-link" href="/" onclick="closeNav()">
+      <div class="section-heading">
+        <i class="ph ph-user text-4xl"></i>
+        <span class="text-4xl">About</span>
+      </div>
+    </a>
+    <a class="nav-modal-link" href="/portfolio/" onclick="closeNav()">
+      <div class="section-heading">
+        <i class="ph ph-hammer text-4xl"></i>
+        <span class="text-4xl">Projects</span>
+      </div>
+    </a>
+    <a class="nav-modal-link" href="/blog/" onclick="closeNav()">
+      <div class="section-heading">
+        <i class="ph ph-folder-open text-4xl"></i>
+        <span class="text-4xl">Blog</span>
+      </div>
+    </a>
+  </nav>
+</div>
+{{ end }}

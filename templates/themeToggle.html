@@ -1,0 +1,49 @@
+{{ define "themeToggle" }}
+<script>
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+
+  function updateThemeLabels() {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const label = isDark ? "Switch to light mode" : "Switch to dark mode";
+    document.querySelectorAll(".theme-toggle-btn").forEach((button) => {
+      button.setAttribute("aria-label", label);
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    updateThemeLabels();
+  });
+
+  function openNav() {
+    const modal = document.getElementById("nav-modal");
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("nav-open");
+  }
+
+  function closeNav() {
+    const modal = document.getElementById("nav-modal");
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("nav-open");
+  }
+
+  function toggleTheme() {
+    const root = document.documentElement;
+    const isDark = root.getAttribute("data-theme") === "dark";
+
+    if (isDark) {
+      root.removeAttribute("data-theme");
+      localStorage.setItem("theme", "light");
+    } else {
+      root.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    }
+
+    updateThemeLabels();
+  }
+</script>
+{{ end }}

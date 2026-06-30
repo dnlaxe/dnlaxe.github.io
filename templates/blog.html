@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="antialiased">
+    {{ template "navbar" . }}
+
+    <article class="kindle-container">
+      <div class="section-heading section-heading--spaced">
+        <i class="ph ph-folder-open text-4xl"></i>
+        <h2 class="text-4xl">Blog</h2>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <span class="filter-tag active" onclick="filterPosts('All', this)"
+          >ALL</span
+        >
+
+        {{ range .Tags }}
+        <span
+          class="filter-tag"
+          onclick="filterPosts('{{ . }}', this)"
+          >{{ . }}</span
+        >
+        {{ end }}
+      </div>
+
+      <hr class="border-t my-4 border-[var(--border-color)]" />
+
+      <section class="space-y-4">
+        {{ range .Posts }}
+
+        <div
+          class="group cursor-pointer post-card border-b border-[var(--border-color)] pb-4"
+          data-tags="{{ range .Tags }}{{ . }},{{ end }}"
+        >
+          <a href="{{ .Link }}" style="text-decoration: none; color: inherit">
+            <h2 class="text-lg mb-1 group-hover:underline">{{ .Title }}</h2>
+            <div class="meta">{{ .Date }}</div>
+          </a>
+        </div>
+
+        {{ end }}
+      </section>
+    </article>
+
+    <script>
+      function filterPosts(tag, clickedElement) {
+        const allTagButtons = document.querySelectorAll(".filter-tag");
+        allTagButtons.forEach((button) => button.classList.remove("active"));
+
+        if (clickedElement) {
+          clickedElement.classList.add("active");
+        }
+
+        const searchTag = tag.toUpperCase();
+        const posts = document.querySelectorAll(".post-card");
+
+        posts.forEach((post) => {
+          const tags = post.getAttribute("data-tags").toUpperCase();
+
+          if (searchTag === "ALL" || tags.includes(searchTag)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      }
+    </script>
+
+    {{ template "themeToggle" . }}
+  </body>
+</html>

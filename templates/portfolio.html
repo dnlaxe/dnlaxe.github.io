@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"
+    />
+  </head>
+  <body class="antialiased">
+    {{ template "navbar" . }}
+
+    <article class="kindle-container">
+      <div class="section-heading section-heading--spaced">
+        <i class="ph ph-folder-open text-4xl"></i>
+        <h2 class="text-4xl">Projects</h2>
+      </div>
+
+      <p class="text-lg">
+        A collection of my recent work and technical explanations.
+      </p>
+
+      <hr class="border-t my-4 border-[var(--border-color)]" />
+
+      <section class="space-y-4">
+        {{ range . }}
+
+        <div class="group cursor-pointer border-b border-[var(--border-color)]">
+          <a href="{{ .Link }}" style="text-decoration: none; color: inherit">
+            <h1 class="text-xl mb-4 group-hover:underline">{{ .Title }}</h1>
+            <div class="meta">{{ .Date }}</div>
+          </a>
+        </div>
+
+        {{ end }}
+      </section>
+    </article>
+
+    {{ template "themeToggle" . }}
+  </body>
+</html>
