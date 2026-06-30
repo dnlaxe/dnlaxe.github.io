@@ -148,10 +148,6 @@ body.nav-open {
   cursor: pointer;
 }
 
-.theme-toggle-btn.navbar-theme {
-  display: none;
-}
-
 .theme-icon--sun {
   display: none;
 }
@@ -236,10 +232,6 @@ body.nav-open {
 
 @media (min-width: 768px) {
   .navbar-links {
-    display: flex;
-  }
-
-  .theme-toggle-btn.navbar-theme {
     display: flex;
   }
 
