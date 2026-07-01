@@ -2,18 +2,18 @@
 
 :root {
   --bg-color: #ffffff;
-  --text-color: black;
-  --border-color: #d0d7de;
-  --code-bg: #f6f8fa;
-  --link-underline-color: #0969da;
+  --text-color: #000000;
+  --border-color: #ddd;
+  --code-bg: #f2f2f2;
+  --link-underline-color: #3273dc;
 }
 
 [data-theme="dark"] {
-  --bg-color: #0d1117;
-  --text-color: #e6edf3;
-  --border-color: #30363d;
-  --code-bg: #161b22;
-  --link-underline-color: #58a6ff;
+  --bg-color: #333;
+  --text-color: #ddd;
+  --border-color: #555;
+  --code-bg: #777;
+  --link-underline-color: #8cc2dd;
 }
 
 body {
@@ -69,6 +69,7 @@ body {
 
 .kindle-container main h2 {
   font-family: "JetBrains Mono", monospace;
+  font-size: 0.95rem;
   letter-spacing: -0.025em;
 }
 
@@ -127,7 +128,7 @@ body.nav-open {
 .navbar-links {
   display: none;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   margin-right: auto;
 }
 
@@ -279,7 +280,6 @@ main a {
   margin: 2px;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.85rem;
-  text-transform: uppercase;
   color: var(--text-color);
   border: solid 1px var(--border-color);
 }
